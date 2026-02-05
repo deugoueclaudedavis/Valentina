@@ -41,6 +41,7 @@ const ValentinePage: React.FC = () => {
       colors: ['#ff0000', '#fe019a', '#ffffff']
     });
 
+    // Remplacez par vos propres IDs EmailJS
     emailjs.send(
       'VOTRE_SERVICE_ID',
       'VOTRE_TEMPLATE_ID',

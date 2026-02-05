@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "@emailjs/browser": "^4.4.1",
     "@types/canvas-confetti": "^1.9.0",
