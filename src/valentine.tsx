@@ -43,12 +43,12 @@ const ValentinePage: React.FC = () => {
 
     // Remplacez par vos propres IDs EmailJS
     emailjs.send(
-      'VOTRE_SERVICE_ID',
-      'VOTRE_TEMPLATE_ID',
+      'service_q7mhxla',
+      'template_nj6v0ca',
       {
         message: "J'accepte d'être ta Valentine ! ❤️"
       },
-      'VOTRE_PUBLIC_KEY'
+      'PFxx8TADzIAdU6Aev'
     );
   };
 
