@@ -1,4 +1,4 @@
-import ValentinePage from './valentine.js'; // Assurez-vous que le chemin est bon
+import ValentinePage from './valentine';
 
 function App() {
   return (
