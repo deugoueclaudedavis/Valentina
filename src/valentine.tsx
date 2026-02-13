@@ -1,143 +1,98 @@
-import React, { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
-import confetti from 'canvas-confetti';
-import emailjs from '@emailjs/browser';
+import React, { useEffect, useState } from "react";
 
-type Position = {
-  x: number;
-  y: number;
-};
+const text = `
+Depuis que tu es entrée dans ma vie,
+chaque jour a pris une couleur différente.
 
-const ValentinePage: React.FC = () => {
-  const [noButtonPos, setNoButtonPos] = useState<Position>({ x: 0, y: 0 });
-  const [accepted, setAccepted] = useState<boolean>(false);
+Il y a dans ton sourire une douceur
+qui apaise mes inquiétudes,
+dans ton regard une lumière
+qui éclaire mes doutes.
 
-  // Déplacement aléatoire du bouton "Non"
-  const moveButton = () => {
-    if (typeof window === 'undefined') return;
+Avec toi, les moments simples
+deviennent précieux.
+Les silences deviennent confortables.
+Et l’avenir me paraît plus beau.
 
-    const x = Math.random() * (window.innerWidth - 120);
-    const y = Math.random() * (window.innerHeight - 80);
+Je ne promets pas un monde parfait,
+mais je promets d’être là,
+de te choisir chaque jour,
+et de t’aimer sincèrement.
 
-    setNoButtonPos({
-      x: x - window.innerWidth / 2,
-      y: y - window.innerHeight / 2
-    });
-  };
+Merci d’être toi.
+`;
 
-  // BONUS MOBILE : déplacement au toucher
-  const handleTouchMove = (e: React.TouchEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    moveButton();
-  };
+const ValentineLetter: React.FC = () => {
+  const [displayedText, setDisplayedText] = useState<string>("");
 
-  const handleYes = () => {
-    setAccepted(true);
+  useEffect(() => {
+    let index = 0;
 
-    confetti({
-      particleCount: 180,
-      spread: 80,
-      origin: { y: 0.6 },
-      colors: ['#ff0000', '#fe019a', '#ffffff']
-    });
+    const interval = setInterval(() => {
+      setDisplayedText((prev) => prev + text.charAt(index));
+      index++;
 
-    // Remplacez par vos propres IDs EmailJS
-    emailjs.send(
-      'service_q7mhxla',
-      'template_nj6v0ca',
-      {
-        message: "J'accepte d'être ta Valentine ! ❤️"
-      },
-      'PFxx8TADzIAdU6Aev'
-    );
-  };
+      if (index >= text.length) {
+        clearInterval(interval);
+      }
+    }, 35);
 
-  // Cœurs animés (mémorisés)
-  const hearts = useMemo(() => {
-    if (typeof window === 'undefined') return null;
-
-    return [...Array(15)].map((_, i) => (
-      <motion.div
-        key={i}
-        className="absolute text-red-400 opacity-50 select-none"
-        initial={{
-          y: '100vh',
-          x: Math.random() * window.innerWidth
-        }}
-        animate={{ y: '-10vh' }}
-        transition={{
-          duration: Math.random() * 5 + 5,
-          repeat: Infinity,
-          ease: 'linear',
-          delay: Math.random() * 5
-        }}
-        style={{ fontSize: Math.random() * 30 + 10 }}
-      >
-        ❤️
-      </motion.div>
-    ));
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="relative h-screen w-full bg-pink-100 flex flex-col items-center justify-center overflow-hidden font-sans">
-      {hearts}
+    <div style={styles.page}>
+      <div style={styles.card}>
+        <h1 style={styles.title}>À toi, mon amour</h1>
 
-      {/* Prénom */}
-      <motion.h1
-        className="text-6xl md:text-8xl font-black text-red-600 mb-8 z-10"
-        style={{ perspective: 1000 }}
-        animate={{
-          rotateY: [0, 360],
-          scale: [1, 1.1, 1]
-        }}
-        transition={{
-          rotateY: { duration: 4, repeat: Infinity, ease: 'linear' },
-          scale: { duration: 2, repeat: Infinity }
-        }}
-      >
-        France
-      </motion.h1>
+        <p style={styles.letter}>
+          {displayedText}
+        </p>
 
-      <h2 className="text-2xl md:text-4xl text-pink-700 font-medium mb-12 z-10">
-        Veux-tu être ma Valentine ?
-      </h2>
-
-      {!accepted ? (
-        <div className="flex gap-6 z-10">
-          {/* Bouton OUI */}
-          <button
-            onClick={handleYes}
-            className="px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full shadow-lg transition-transform hover:scale-110"
-          >
-            OUI !
-          </button>
-
-          {/* Bouton NON (PC + Mobile) */}
-          <motion.button
-            onMouseEnter={moveButton}
-            onClick={moveButton}
-            onTouchStart={handleTouchMove}
-            onTouchMove={handleTouchMove}
-            animate={{ x: noButtonPos.x, y: noButtonPos.y }}
-            transition={{ type: 'spring', stiffness: 350, damping: 20 }}
-            className="px-8 py-4 bg-red-500 text-white font-bold rounded-full shadow-lg touch-none"
-          >
-            Non
-          </motion.button>
-        </div>
-      ) : (
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-center z-10"
-        >
-          <p className="text-4xl text-red-600 font-bold">
-            💖 Magnifique ! À très vite ! 💖
-          </p>
-        </motion.div>
-      )}
+        <p style={styles.signature}>
+          — Davis Claude ❤️
+        </p>
+      </div>
     </div>
   );
 };
 
-export default ValentinePage;
+const styles: { [key: string]: React.CSSProperties } = {
+  page: {
+    height: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "linear-gradient(135deg, #ffe5ec, #ffc2d1)",
+    fontFamily: "Georgia, serif",
+    padding: "20px"
+  },
+  card: {
+    maxWidth: "650px",
+    background: "#ffffff",
+    padding: "50px",
+    borderRadius: "20px",
+    boxShadow: "0 15px 40px rgba(0,0,0,0.1)",
+    textAlign: "center",
+    animation: "fadeIn 1.5s ease-in-out"
+  },
+  title: {
+    fontWeight: 400,
+    marginBottom: "30px",
+    color: "#5c1a33"
+  },
+  letter: {
+    whiteSpace: "pre-line",
+    lineHeight: 1.8,
+    fontSize: "18px",
+    color: "#5c1a33",
+    minHeight: "250px"
+  },
+  signature: {
+    marginTop: "40px",
+    fontStyle: "italic",
+    opacity: 0.8
+  }
+};
+
+export default ValentineLetter;

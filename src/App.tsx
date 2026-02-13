@@ -1,9 +1,9 @@
-import ValentinePage from './valentine';
+import ValentineLetter from './valentine';
 
 function App() {
   return (
     <div className="App">
-      <ValentinePage />
+      <ValentineLetter />
     </div>
   );
 }
