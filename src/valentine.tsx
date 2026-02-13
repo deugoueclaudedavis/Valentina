@@ -43,14 +43,14 @@ const ValentineLetter: React.FC = () => {
   return (
     <div style={styles.page}>
       <div style={styles.card}>
-        <h1 style={styles.title}>À toi, mon amour</h1>
+        <h1 style={styles.title}>À toi, jolie dame</h1>
 
         <p style={styles.letter}>
           {displayedText}
         </p>
 
         <p style={styles.signature}>
-          — Davis Claude ❤️
+          — Claude ❤️
         </p>
       </div>
     </div>
