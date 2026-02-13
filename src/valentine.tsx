@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const text = `
-Depuis que tu es entrée dans ma vie,
+ Depuis que tu es entrée dans ma vie,
 chaque jour a pris une couleur différente.
 
 Il y a dans ton sourire une douceur
