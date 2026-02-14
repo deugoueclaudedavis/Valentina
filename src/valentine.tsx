@@ -2,24 +2,27 @@ import React, { useEffect, useState } from "react";
 
 const text = `
  Depuis que tu es entrée dans ma vie,
-chaque jour a pris une couleur différente.
+les choses ont une saveur différente…
+plus douce, plus lumineuse.
 
-Il y a dans ton sourire une douceur
-qui apaise mes inquiétudes,
-dans ton regard une lumière
-qui éclaire mes doutes.
+Il y a dans ton sourire une chaleur
+qui apaise mes journées,
+et dans ton regard une profondeur
+qui me donne envie de m’y perdre un instant…
+puis de rester.
 
 Avec toi, les moments simples
 deviennent précieux.
-Les silences deviennent confortables.
-Et l’avenir me paraît plus beau.
+Les silences ne sont plus vides,
+ils sont remplis d’une présence qui fait du bien.
 
-Je ne promets pas un monde parfait,
-mais je promets d’être là,
-de te choisir chaque jour,
-et de t’aimer sincèrement.
+Et parfois, sans même que tu le saches,
+il y a cette envie naturelle de te garder tout près de moi,
+de te serrer doucement dans mes bras
+comme si le monde pouvait attendre un peu.
 
-Merci d’être toi.
+Continue simplement d’être celle que tu es…
+c’est déjà tout ce qu’il faut.
 `;
 
 const ValentineLetter: React.FC = () => {
